@@ -8,6 +8,7 @@ import { ProductsController } from '../controllers/products.controller';
 import { GetProductAdapter } from '../../infraestructure/adapters/usecase/get.product.adapter';
 import { GetProductService } from '../../core/services/get.product.service';
 import { ProductRepositoryAdapter } from '../../infraestructure/adapters/persistance/mongoose/repository/product.repository.adapter';
+import { CreateProductService } from '../../core/services/create.product.service';
 
 @Module({
   imports: [
@@ -16,6 +17,10 @@ import { ProductRepositoryAdapter } from '../../infraestructure/adapters/persist
     ]),
   ],
   controllers: [ProductsController],
-  providers: [ProductRepositoryAdapter, GetProductService, GetProductAdapter],
+  providers: [
+    ProductRepositoryAdapter,
+    GetProductService,
+    CreateProductService,
+  ],
 })
 export class ProductModule {}

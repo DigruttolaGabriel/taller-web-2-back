@@ -26,4 +26,9 @@ export class StatusCode {
     code: 1000,
     message: 'Entity validacion error.',
   };
+
+  public static ENTITY_ALREADY_EXISTS_ERROR: CodeDescription = {
+    code: 1001,
+    message: 'Entity already exists.',
+  };
 }

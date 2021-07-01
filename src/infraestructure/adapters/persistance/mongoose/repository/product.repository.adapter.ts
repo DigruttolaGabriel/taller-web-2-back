@@ -33,4 +33,19 @@ export class ProductRepositoryAdapter implements ProductRepositoryPort {
       id: id,
     });
   }
+
+  public async add(product: Product): Promise<Product> {
+    let domainEntity: Nullable<Product> = null;
+
+    const newProductModel: ProductModel = new this._productModel(
+      MongoProductMapper.fromDomainToNewModel(product),
+    );
+
+    const response: ProductModel = await newProductModel.save();
+
+    if (response)
+      domainEntity = await MongoProductMapper.toDomainEntity(response);
+
+    return domainEntity;
+  }
 }
