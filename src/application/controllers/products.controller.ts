@@ -64,8 +64,11 @@ export class ProductsController {
   public async post(
     @Body() productHttpBody: ProductHttpBody,
   ): Promise<ProductDto> {
-    const adapter: CreateProductAdapter = await GetProductAdapter.new({
+    const adapter: CreateProductAdapter = await CreateProductAdapter.new({
       id: productHttpBody.id,
+      name: productHttpBody.name,
+      description: productHttpBody.description,
+      prize: productHttpBody.prize,
     });
 
     return await this._createProductService.execute(adapter);

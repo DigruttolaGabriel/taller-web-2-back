@@ -1,5 +1,4 @@
 import { ProductUsecase } from '../usecase/product.usecase';
-import { GetProductPort } from '../domain/ports/usecase/get.product.port';
 import { ProductDto } from '../domain/dtos/product.dto';
 import { ProductRepositoryAdapter } from '../../infraestructure/adapters/persistance/mongoose/repository/product.repository.adapter';
 import { Product } from '../domain/entities/product';
@@ -16,7 +15,7 @@ export class CreateProductService
     private readonly _mongoProductRepository: ProductRepositoryAdapter,
   ) {}
 
-  public async execute(payload: GetProductPort): Promise<ProductDto> {
+  public async execute(payload: CreateProductPort): Promise<ProductDto> {
     const exist: boolean = await this._mongoProductRepository.checkIfExist(
       payload.id,
     );
@@ -33,6 +32,9 @@ export class CreateProductService
 
     const product: Product = await Product.new({
       id: payload.id,
+      name: payload.name,
+      description: payload.description,
+      prize: payload.prize,
     });
 
     const newProduct: Product = await this._mongoProductRepository.add(product);

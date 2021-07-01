@@ -6,6 +6,15 @@ import mongoose from 'mongoose';
 export class ProductModel extends Document {
   @Prop({ required: true })
   public id: number;
+
+  @Prop({ required: true })
+  public name: string;
+
+  @Prop({ required: true })
+  public description: string;
+
+  @Prop({ required: true })
+  public prize: number;
 }
 
 export const productSchema: mongoose.Schema<ProductModel> =

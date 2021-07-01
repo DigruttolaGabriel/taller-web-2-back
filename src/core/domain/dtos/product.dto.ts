@@ -6,6 +6,15 @@ export class ProductDto {
   @Expose({ name: '_id' })
   public id: number;
 
+  @Expose({ name: '_name' })
+  public name: string;
+
+  @Expose({ name: '_description' })
+  public description: string;
+
+  @Expose({ name: '_prize' })
+  public prize: number;
+
   public static newFromProduct(product: Product): ProductDto {
     return plainToClass(ProductDto, product);
   }

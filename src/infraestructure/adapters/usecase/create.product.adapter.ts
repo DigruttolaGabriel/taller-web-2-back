@@ -1,6 +1,6 @@
 import { Exclude, Expose, plainToClass } from 'class-transformer';
 import { UsecaseValidatableAdapter } from '../../../core/common/adapters/usecase/usecase.validatable.adapter';
-import { IsNumber } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { CreateProductPort } from '../../../core/domain/ports/usecase/create.product.port';
 
 @Exclude()
@@ -11,6 +11,20 @@ export class CreateProductAdapter
   @Expose()
   @IsNumber()
   public id: number;
+
+  @Expose()
+  @IsString()
+  @IsNotEmpty()
+  public name: string;
+
+  @Expose()
+  @IsString()
+  @IsNotEmpty()
+  public description: string;
+
+  @Expose()
+  @IsNumber({ maxDecimalPlaces: 2 })
+  public prize: number;
 
   public static async new(
     payload: CreateProductPort,
