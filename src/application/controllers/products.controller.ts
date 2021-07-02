@@ -68,7 +68,7 @@ export class ProductsController {
       id: productHttpBody.id,
       name: productHttpBody.name,
       description: productHttpBody.description,
-      prize: productHttpBody.prize,
+      price: productHttpBody.price,
     });
 
     return await this._createProductService.execute(adapter);

@@ -1,6 +1,7 @@
 import { IsDefined, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { ProductPayload } from './types/product.payload';
 import { Entity } from '../../common/entities/entity';
+import { Category } from './category';
 
 export class Product extends Entity {
   @IsDefined()
@@ -19,14 +20,18 @@ export class Product extends Entity {
 
   @IsDefined()
   @IsNumber({ maxDecimalPlaces: 2 })
-  private readonly _prize: number;
+  private readonly _price: number;
+
+  @IsDefined()
+  @IsNumber({ maxDecimalPlaces: 2 })
+  private readonly _category: Category;
 
   constructor(payload: ProductPayload) {
     super();
     this._id = payload.id;
     this._name = payload.name;
     this._description = payload.description;
-    this._prize = payload.prize;
+    this._price = payload.price;
   }
 
   public get id(): number {
@@ -41,8 +46,8 @@ export class Product extends Entity {
     return this._description;
   }
 
-  public get prize(): number {
-    return this._prize;
+  public get price(): number {
+    return this._price;
   }
 
   public static async new(payload: ProductPayload): Promise<Product> {

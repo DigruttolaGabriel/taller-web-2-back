@@ -9,7 +9,7 @@ export class MongoProductMapper {
       id: ormProduct.id,
       name: ormProduct.name,
       description: ormProduct.description,
-      prize: ormProduct.prize,
+      price: ormProduct.price,
     });
   }
 
@@ -18,7 +18,7 @@ export class MongoProductMapper {
       id: product.id,
       name: product.id,
       description: product.description,
-      prize: product.prize,
+      price: product.price,
     };
   }
 }

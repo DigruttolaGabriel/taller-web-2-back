@@ -24,7 +24,7 @@ export class CreateProductAdapter
 
   @Expose()
   @IsNumber({ maxDecimalPlaces: 2 })
-  public prize: number;
+  public price: number;
 
   public static async new(
     payload: CreateProductPort,

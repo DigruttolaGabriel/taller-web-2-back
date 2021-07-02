@@ -8,5 +8,5 @@ export class ProductHttpBody {
   @ApiProperty({ type: String, required: true })
   public readonly description: string;
   @ApiProperty({ type: Number, required: true, minimum: 1 })
-  public readonly prize: number;
+  public readonly price: number;
 }

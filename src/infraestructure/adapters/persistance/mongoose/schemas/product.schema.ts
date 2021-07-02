@@ -14,7 +14,7 @@ export class ProductModel extends Document {
   public description: string;
 
   @Prop({ required: true })
-  public prize: number;
+  public price: number;
 }
 
 export const productSchema: mongoose.Schema<ProductModel> =

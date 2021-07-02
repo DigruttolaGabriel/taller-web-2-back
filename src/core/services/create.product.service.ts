@@ -34,7 +34,7 @@ export class CreateProductService
       id: payload.id,
       name: payload.name,
       description: payload.description,
-      prize: payload.prize,
+      price: payload.price,
     });
 
     const newProduct: Product = await this._mongoProductRepository.add(product);

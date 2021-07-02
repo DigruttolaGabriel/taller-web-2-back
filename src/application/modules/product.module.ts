@@ -5,7 +5,6 @@ import {
   productSchema,
 } from '../../infraestructure/adapters/persistance/mongoose/schemas/product.schema';
 import { ProductsController } from '../controllers/products.controller';
-import { GetProductAdapter } from '../../infraestructure/adapters/usecase/get.product.adapter';
 import { GetProductService } from '../../core/services/get.product.service';
 import { ProductRepositoryAdapter } from '../../infraestructure/adapters/persistance/mongoose/repository/product.repository.adapter';
 import { CreateProductService } from '../../core/services/create.product.service';
