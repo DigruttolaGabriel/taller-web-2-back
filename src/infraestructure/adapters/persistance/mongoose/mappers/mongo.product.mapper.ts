@@ -16,9 +16,15 @@ export class MongoProductMapper {
   public static fromDomainToNewModel(product: Product): any {
     return {
       id: product.id,
-      name: product.id,
+      name: product.name,
       description: product.description,
       price: product.price,
     };
+  }
+
+  public static toDomainListEntities(
+    ormProducts: Array<ProductModel>,
+  ): Promise<Array<Product>> {
+    return Promise.all(ormProducts.map((p) => this.toDomainEntity(p)));
   }
 }

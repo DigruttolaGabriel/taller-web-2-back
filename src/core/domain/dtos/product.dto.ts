@@ -18,4 +18,10 @@ export class ProductDto {
   public static newFromProduct(product: Product): ProductDto {
     return plainToClass(ProductDto, product);
   }
+
+  public static newListFromProducts(
+    products: Array<Product>,
+  ): Array<ProductDto> {
+    return products.map((p) => this.newFromProduct(p));
+  }
 }

@@ -1,7 +1,6 @@
 import { IsDefined, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { ProductPayload } from './types/product.payload';
 import { Entity } from '../../common/entities/entity';
-import { Category } from './category';
 
 export class Product extends Entity {
   @IsDefined()
@@ -21,10 +20,6 @@ export class Product extends Entity {
   @IsDefined()
   @IsNumber({ maxDecimalPlaces: 2 })
   private readonly _price: number;
-
-  @IsDefined()
-  @IsNumber({ maxDecimalPlaces: 2 })
-  private readonly _category: Category;
 
   constructor(payload: ProductPayload) {
     super();

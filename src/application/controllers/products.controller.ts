@@ -23,19 +23,38 @@ import {
 import { ProductHttpBody } from '../documentation/product.http.body';
 import { CreateProductAdapter } from 'src/infraestructure/adapters/usecase/create.product.adapter';
 import { CreateProductService } from '../../core/services/create.product.service';
+import { GetAllProductService } from '../../core/services/get.all.product.service';
 
 @UseGuards(AuthGuard)
-@Controller('/taller-web-2/api/product')
+@Controller('/taller-web-2/api')
 @ApiTags(' Product Controller')
 @ApiBearerAuth()
 @ApiUnauthorizedResponse({ description: 'Unauthorized access. Invalid token.' })
 export class ProductsController {
   constructor(
     private readonly _getProductService: GetProductService,
+    private readonly _getAllProductService: GetAllProductService,
     private readonly _createProductService: CreateProductService,
   ) {}
 
-  @Get('/:id')
+  @Get('/products/:page')
+  @HttpCode(HttpStatus.OK)
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'Get all products.',
+  })
+  @ApiResponse({ status: HttpStatus.NOT_FOUND, description: 'No data found.' })
+  @ApiResponse({
+    status: HttpStatus.BAD_REQUEST,
+    description: 'Invalid page number.',
+  })
+  public async getPage(
+    @Param('page', ParseIntPipe) pageNumber: number,
+  ): Promise<Array<ProductDto>> {
+    return await this._getAllProductService.execute(pageNumber);
+  }
+
+  @Get('/product/:id')
   @HttpCode(HttpStatus.OK)
   @ApiResponse({
     status: HttpStatus.OK,
@@ -50,7 +69,7 @@ export class ProductsController {
     return await this._getProductService.execute(adapter);
   }
 
-  @Post()
+  @Post('/product')
   @HttpCode(HttpStatus.CREATED)
   @ApiBody({ type: ProductHttpBody })
   @ApiResponse({

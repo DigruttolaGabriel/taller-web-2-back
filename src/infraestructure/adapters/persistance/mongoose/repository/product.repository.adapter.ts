@@ -3,7 +3,7 @@ import { ProductDto } from '../../../../../core/domain/dtos/product.dto';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { ProductModel } from '../schemas/product.schema';
-import { Model } from 'mongoose';
+import { Model, mongo } from 'mongoose';
 import { Product } from '../../../../../core/domain/entities/product';
 import { Nullable } from '../../../../../core/common/types/common.types';
 import { MongoProductMapper } from '../mappers/mongo.product.mapper';
@@ -47,5 +47,27 @@ export class ProductRepositoryAdapter implements ProductRepositoryPort {
       domainEntity = await MongoProductMapper.toDomainEntity(response);
 
     return domainEntity;
+  }
+
+  public async findPage(
+    pageSize: number,
+    skipSize: number,
+  ): Promise<Nullable<Array<Product>>> {
+    let domainEntities: Nullable<Array<Product>> = null;
+    const mongoModel: Nullable<Array<ProductModel>> = await this._productModel
+      .find()
+      .skip(skipSize)
+      .limit(pageSize)
+      .sort({
+        id: 1,
+      })
+      .exec();
+
+    if (mongoModel)
+      domainEntities = await MongoProductMapper.toDomainListEntities(
+        mongoModel,
+      );
+
+    return domainEntities;
   }
 }

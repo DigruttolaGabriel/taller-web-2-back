@@ -22,13 +22,23 @@ export class StatusCode {
     message: 'Invalid token.',
   };
 
-  public static ENTITY_VALIDATION_ERROR: CodeDescription = {
+  public static USE_CASE_PORT_VALIDATION_ERROR: CodeDescription = {
     code: 1000,
+    message: 'Use-case port validacion error.',
+  };
+
+  public static ENTITY_VALIDATION_ERROR: CodeDescription = {
+    code: 1001,
     message: 'Entity validacion error.',
   };
 
   public static ENTITY_ALREADY_EXISTS_ERROR: CodeDescription = {
-    code: 1001,
+    code: 1002,
     message: 'Entity already exists.',
+  };
+
+  public static WRONG_PAGE_NUMBER: CodeDescription = {
+    code: 1003,
+    message: 'Page number is invalid.',
   };
 }
