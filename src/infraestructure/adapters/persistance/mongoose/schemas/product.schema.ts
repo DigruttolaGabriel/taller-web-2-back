@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import mongoose from 'mongoose';
+import { Category } from 'src/core/common/enums/category';
 
 @Schema()
 export class ProductModel extends Document {
@@ -15,6 +16,9 @@ export class ProductModel extends Document {
 
   @Prop({ required: true })
   public price: number;
+
+  @Prop({ required: true })
+  public category: Category;
 }
 
 export const productSchema: mongoose.Schema<ProductModel> =

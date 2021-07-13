@@ -1,6 +1,13 @@
-import { IsDefined, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import {
+  IsDefined,
+  IsEnum,
+  IsNotEmpty,
+  IsNumber,
+  IsString,
+} from 'class-validator';
 import { ProductPayload } from './types/product.payload';
 import { Entity } from '../../common/entities/entity';
+import { Category } from '../../common/enums/category';
 
 export class Product extends Entity {
   @IsDefined()
@@ -21,12 +28,17 @@ export class Product extends Entity {
   @IsNumber({ maxDecimalPlaces: 2 })
   private readonly _price: number;
 
+  @IsDefined()
+  @IsEnum(Category)
+  private readonly _category: Category;
+
   constructor(payload: ProductPayload) {
     super();
     this._id = payload.id;
     this._name = payload.name;
     this._description = payload.description;
     this._price = payload.price;
+    this._category = payload.category;
   }
 
   public get id(): number {
@@ -43,6 +55,10 @@ export class Product extends Entity {
 
   public get price(): number {
     return this._price;
+  }
+
+  public get category(): Category {
+    return this._category;
   }
 
   public static async new(payload: ProductPayload): Promise<Product> {

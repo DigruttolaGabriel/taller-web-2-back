@@ -56,8 +56,29 @@ export class ProductRepositoryAdapter implements ProductRepositoryPort {
     let domainEntities: Nullable<Array<Product>> = null;
     const mongoModel: Nullable<Array<ProductModel>> = await this._productModel
       .find()
-      .skip(skipSize)
-      .limit(pageSize)
+      //.skip(skipSize)
+      //.limit(pageSize)
+      .sort({
+        id: 1,
+      })
+      .exec();
+
+    if (mongoModel)
+      domainEntities = await MongoProductMapper.toDomainListEntities(
+        mongoModel,
+      );
+
+    return domainEntities;
+  }
+
+  public async searchByCategory(
+    category: string,
+  ): Promise<Nullable<Array<Product>>> {
+    let domainEntities: Nullable<Array<Product>> = null;
+    const mongoModel: Nullable<Array<ProductModel>> = await this._productModel
+      .find()
+      .where('category')
+      .equals(category)
       .sort({
         id: 1,
       })

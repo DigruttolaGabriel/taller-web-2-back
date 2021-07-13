@@ -10,6 +10,7 @@ export class MongoProductMapper {
       name: ormProduct.name,
       description: ormProduct.description,
       price: ormProduct.price,
+      category: ormProduct.category,
     });
   }
 
@@ -19,6 +20,7 @@ export class MongoProductMapper {
       name: product.name,
       description: product.description,
       price: product.price,
+      category: product.category,
     };
   }
 

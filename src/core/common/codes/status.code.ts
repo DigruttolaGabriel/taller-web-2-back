@@ -41,4 +41,9 @@ export class StatusCode {
     code: 1003,
     message: 'Page number is invalid.',
   };
+
+  public static WRONG_CATEGORY: CodeDescription = {
+    code: 1004,
+    message: 'Product category is invalid.',
+  };
 }

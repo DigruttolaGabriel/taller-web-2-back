@@ -10,4 +10,5 @@ export interface ProductRepositoryPort {
     pageSize: number,
     skipSize: number,
   ): Promise<Nullable<Array<Product>>>;
+  searchByCategory(category: string): Promise<Nullable<Array<Product>>>;
 }

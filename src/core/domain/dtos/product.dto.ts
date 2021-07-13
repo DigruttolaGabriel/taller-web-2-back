@@ -1,5 +1,6 @@
 import { Exclude, Expose, plainToClass } from 'class-transformer';
 import { Product } from '../entities/product';
+import { Category } from '../../common/enums/category';
 
 @Exclude()
 export class ProductDto {
@@ -14,6 +15,9 @@ export class ProductDto {
 
   @Expose({ name: '_price' })
   public price: number;
+
+  @Expose({ name: '_category' })
+  public category: Category;
 
   public static newFromProduct(product: Product): ProductDto {
     return plainToClass(ProductDto, product);

@@ -9,6 +9,7 @@ import { GetProductService } from '../../core/services/get.product.service';
 import { ProductRepositoryAdapter } from '../../infraestructure/adapters/persistance/mongoose/repository/product.repository.adapter';
 import { CreateProductService } from '../../core/services/create.product.service';
 import { GetAllProductService } from '../../core/services/get.all.product.service';
+import { SearchProductsByCategoryService } from '../../core/services/search.products.by.category.service';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { GetAllProductService } from '../../core/services/get.all.product.servic
     GetProductService,
     GetAllProductService,
     CreateProductService,
+    SearchProductsByCategoryService,
   ],
 })
 export class ProductModule {}
