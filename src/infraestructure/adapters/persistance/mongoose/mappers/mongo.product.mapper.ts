@@ -11,6 +11,7 @@ export class MongoProductMapper {
       description: ormProduct.description,
       price: ormProduct.price,
       category: ormProduct.category,
+      urlImage: ormProduct.urlImage,
     });
   }
 
@@ -21,6 +22,7 @@ export class MongoProductMapper {
       description: product.description,
       price: product.price,
       category: product.category,
+      urlImage: product.urlImage,
     };
   }
 

@@ -32,6 +32,11 @@ export class Product extends Entity {
   @IsEnum(Category)
   private readonly _category: Category;
 
+  @IsDefined()
+  @IsString()
+  @IsNotEmpty()
+  private readonly _urlImage: string;
+
   constructor(payload: ProductPayload) {
     super();
     this._id = payload.id;
@@ -39,6 +44,7 @@ export class Product extends Entity {
     this._description = payload.description;
     this._price = payload.price;
     this._category = payload.category;
+    this._urlImage = payload.urlImage;
   }
 
   public get id(): number {
@@ -59,6 +65,10 @@ export class Product extends Entity {
 
   public get category(): Category {
     return this._category;
+  }
+
+  public get urlImage(): string {
+    return this._urlImage;
   }
 
   public static async new(payload: ProductPayload): Promise<Product> {

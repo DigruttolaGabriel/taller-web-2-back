@@ -19,6 +19,9 @@ export class ProductDto {
   @Expose({ name: '_category' })
   public category: Category;
 
+  @Expose({ name: '_urlImage' })
+  public urlImage: string;
+
   public static newFromProduct(product: Product): ProductDto {
     return plainToClass(ProductDto, product);
   }

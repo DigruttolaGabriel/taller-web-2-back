@@ -38,6 +38,11 @@ export class CreateProductAdapter
   @IsEnum(Category)
   public category: Category;
 
+  @Expose()
+  @IsString()
+  @IsNotEmpty()
+  public urlImage: string;
+
   public static async new(
     payload: CreateProductPort,
   ): Promise<CreateProductAdapter> {

@@ -6,4 +6,5 @@ export type ProductPayload = {
   description: string;
   price: number;
   category: Category;
+  urlImage: string;
 };

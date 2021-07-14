@@ -49,15 +49,10 @@ export class ProductRepositoryAdapter implements ProductRepositoryPort {
     return domainEntity;
   }
 
-  public async findPage(
-    pageSize: number,
-    skipSize: number,
-  ): Promise<Nullable<Array<Product>>> {
+  public async findAll(): Promise<Nullable<Array<Product>>> {
     let domainEntities: Nullable<Array<Product>> = null;
     const mongoModel: Nullable<Array<ProductModel>> = await this._productModel
       .find()
-      //.skip(skipSize)
-      //.limit(pageSize)
       .sort({
         id: 1,
       })

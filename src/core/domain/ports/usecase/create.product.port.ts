@@ -6,4 +6,5 @@ export interface CreateProductPort {
   description: string;
   price: number;
   category: Category;
+  urlImage: string;
 }

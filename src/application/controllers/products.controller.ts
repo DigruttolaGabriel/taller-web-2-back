@@ -40,24 +40,18 @@ export class ProductsController {
     private readonly _searchProductsByCategoryService: SearchProductsByCategoryService,
   ) {}
 
-  @Get('/products/:page')
+  @Get('/products')
   @HttpCode(HttpStatus.OK)
   @ApiResponse({
     status: HttpStatus.OK,
     description: 'Get all products.',
   })
   @ApiResponse({ status: HttpStatus.NOT_FOUND, description: 'No data found.' })
-  @ApiResponse({
-    status: HttpStatus.BAD_REQUEST,
-    description: 'Invalid page number.',
-  })
-  public async getPage(
-    @Param('page', ParseIntPipe) pageNumber: number,
-  ): Promise<Array<ProductDto>> {
-    return await this._getAllProductService.execute(pageNumber);
+  public async getAll(): Promise<Array<ProductDto>> {
+    return await this._getAllProductService.execute();
   }
 
-  @Get('/products/category/:category')
+  @Get('/products/:category')
   @HttpCode(HttpStatus.OK)
   @ApiResponse({
     status: HttpStatus.OK,
@@ -109,6 +103,7 @@ export class ProductsController {
       description: productHttpBody.description,
       price: productHttpBody.price,
       category: productHttpBody.category,
+      urlImage: productHttpBody.urlImage,
     });
 
     return await this._createProductService.execute(adapter);

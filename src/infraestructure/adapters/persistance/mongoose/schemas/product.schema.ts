@@ -19,6 +19,9 @@ export class ProductModel extends Document {
 
   @Prop({ required: true })
   public category: Category;
+
+  @Prop({ required: true })
+  public urlImage: string;
 }
 
 export const productSchema: mongoose.Schema<ProductModel> =

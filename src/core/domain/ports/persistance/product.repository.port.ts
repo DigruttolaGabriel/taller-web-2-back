@@ -6,9 +6,6 @@ export interface ProductRepositoryPort {
   find(id: number): Promise<ProductDto>;
   checkIfExist(id: number): Promise<boolean>;
   add(product: Product): Promise<Product>;
-  findPage(
-    pageSize: number,
-    skipSize: number,
-  ): Promise<Nullable<Array<Product>>>;
+  findAll(): Promise<Nullable<Array<Product>>>;
   searchByCategory(category: string): Promise<Nullable<Array<Product>>>;
 }

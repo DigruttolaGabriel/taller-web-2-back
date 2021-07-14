@@ -12,4 +12,6 @@ export class ProductHttpBody {
   public readonly price: number;
   @ApiProperty({ enum: Category, required: true })
   public readonly category: Category;
+  @ApiProperty({ type: String, required: true })
+  public readonly urlImage: string;
 }

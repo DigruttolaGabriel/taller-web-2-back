@@ -16,20 +16,9 @@ export class GetAllProductService
     private readonly _mongoProductRepository: ProductRepositoryAdapter,
   ) {}
 
-  public async execute(pageNumber: number): Promise<Array<ProductDto>> {
-    if (!pageNumber || pageNumber < 1)
-      throw Exception.new(
-        {
-          code: StatusCode.BAD_REQUEST_ERROR,
-          data: StatusCode.WRONG_PAGE_NUMBER,
-        },
-        GetAllProductService.name,
-      );
-
-    const pageSize: number = CommonConstants.pageSize;
-    const skipNumber: number = (pageNumber - 1) * pageNumber;
+  public async execute(): Promise<Array<ProductDto>> {
     const products: Nullable<Array<Product>> =
-      await this._mongoProductRepository.findPage(pageSize, skipNumber);
+      await this._mongoProductRepository.findAll();
 
     if (products && products.length > 0)
       return ProductDto.newListFromProducts(products);
