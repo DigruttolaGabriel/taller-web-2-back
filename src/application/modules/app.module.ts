@@ -4,6 +4,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ProductModule } from './product.module';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from '../guards/auth.guard';
+import { CategoryModule } from './category.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { AuthGuard } from '../guards/auth.guard';
       inject: [ConfigService],
     }),
     ProductModule,
+    CategoryModule,
   ],
   controllers: [],
   providers: [
